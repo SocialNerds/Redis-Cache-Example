@@ -61,6 +61,15 @@ class LoadCachedCommand extends Command
         print('Duration: '.(string)(microtime(true) - $start).PHP_EOL);
     }
 
+    /**
+     * Get blog post titles from cache or DB.
+     *
+     * @param DateTime $date
+     *
+     * @return array
+     *
+     * @throws \Exception
+     */
     protected function getBlogPostTitlesByGreaterDateCached(DateTime $date): array
     {
         $item = $this->redis->getItem('blog.'.md5($date->getTimestamp()));
@@ -76,4 +85,5 @@ class LoadCachedCommand extends Command
 
         return $blogPostTitles;
     }
+
 }
