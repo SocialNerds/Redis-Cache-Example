@@ -1,0 +1,52 @@
+version: '3.7'
+
+services:
+  fpm:
+    build:
+      context: ./fpm
+      args:
+        UID: ${UID}
+        GID: ${GID}
+    container_name: app_fpm
+    volumes:
+      - ./code:/home/serveruser/code:delegated
+    networks:
+      app_net:
+  redis:
+    image: redis:4
+    container_name: app_redis
+    volumes:
+       - redis-data:/data
+    networks:
+      app_net:
+  db:
+    image: mariadb:10.4
+    ports:
+      - 3306:3306
+    container_name: app_db
+    volumes:
+      - db-data:/var/lib/mysql
+      - db-logs:/var/log/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    networks:
+      app_net:
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: app_phpmyadmin
+    ports:
+      - 8080:80
+    environment:
+      PMA_HOST: db
+      PHP_UPLOAD_MAX_FILESIZE: 67108864
+    networks:
+      app_net:
+networks:
+  app_net:
+volumes:
+  db-data:
+  db-logs:
+  redis-data:
