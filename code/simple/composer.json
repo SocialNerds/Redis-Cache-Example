@@ -1,0 +1,7 @@
+{
+    "name": "root/simple",
+    "type": "project",
+    "require": {
+        "symfony/cache": "^4.3"
+    }
+}
