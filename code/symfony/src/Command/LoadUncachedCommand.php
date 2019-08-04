@@ -36,16 +36,17 @@ class LoadUncachedCommand extends Command
     {
         $start = microtime(true);
 
-        for ($i = 0; $i < 500; $i++) {
+        print('Testing');
+        for ($i = 0; $i < 1000; $i++) {
             $date = new DateTime();
             $date->setTimestamp(1501861385);
-
-            for ($d = 0; $d < 100; $d++) {
+            for ($d = 0; $d < 10; $d++) {
                 $date->modify('+'.$d.'day');
                 $blogPostTitles = $this->blogPostTitleLoader->getBlogPostTitlesByGreaterDate($date);
             }
+            print('.');
         }
-        print('Duration: '.(string)(microtime(true) - $start).PHP_EOL);
+        print(PHP_EOL.'Duration: '.(string)(microtime(true) - $start).PHP_EOL);
     }
 
 }

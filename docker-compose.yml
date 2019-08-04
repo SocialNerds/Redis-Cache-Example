@@ -26,7 +26,6 @@ services:
     container_name: app_db
     volumes:
       - db-data:/var/lib/mysql
-      - db-logs:/var/log/mysql
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -48,5 +47,4 @@ networks:
   app_net:
 volumes:
   db-data:
-  db-logs:
   redis-data:
