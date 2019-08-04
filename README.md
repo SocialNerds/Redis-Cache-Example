@@ -3,7 +3,7 @@
 This repo contains an example on caching with Redis. 
 
 # Check the full explanation video (GR)
-[![Cache, για Performance & Consistency #73, live](https://img.youtube.com/vi/1z-Pjc8HJZg/0.jpg)](https://youtu.be/1z-Pjc8HJZg)
+(Coming soon)
 
 # Installation
 Requirements
